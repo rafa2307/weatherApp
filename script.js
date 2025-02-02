@@ -13,7 +13,7 @@ function getWeather() {
         return;
     }
     const apiKey = API_KEY;
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
 
     // Showing the loading message to the user before fetching the data
     loadingMessage.style.display = "block";
