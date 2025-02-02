@@ -1,27 +1,33 @@
+// this the function that gets called when the button get weather button gets clicked
 function getWeather() {
-    const city = document.getElementById('city').value;
-    const errorMessage = document.getElementById('error-message');
-    const loadingMessage = document.getElementById("loading-message");
-    errorMessage.innerText = "";
-    loadingMessage.style.display = "none";
+    const city = document.getElementById('city').value; // user input
+    const errorMessage = document.getElementById('error-message'); // error message for when user inputs a city that does not exist or if the input is left blank
+    const loadingMessage = document.getElementById("loading-message"); // lets the user know the data is being fetched
+    errorMessage.innerText = ""; // empty text for the error-message element
+    loadingMessage.style.display = "none"; // hiding the loading message from the user
 
+    // We check if the city input is empty
     if(city === ""){
+        // error we display if the city input is empty
         errorMessage.innerText = "Please enter a city name.";
         return;
     }
     const apiKey = API_KEY;
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
+    // Showing the loading message to the user before fetching the data
     loadingMessage.style.display = "block";
-
+    // fetching data
     fetch(apiUrl)
         .then(response => {
+            // Checking if the user entered a fake city
             if (!response.ok){
                 throw new Error("City not found.");
             }
             return response.json();
         })
         .then(data => {
+            // We check to see if the data object is empty
             if(!data.main || !data.weather || data.weather.length === 0){
                 throw new Error("Weather data unavailable.");
             }
