@@ -97,10 +97,10 @@ function fetchWeatherByCoord(lat, lon){
             document.getElementById('description').innerText = `Description: ${description}`;
         })
         .catch(error => {
-            errorMessage.innerText = error.message;
+            document.getElementById('error-message').innerText = error.message;
         })
         .finally(() => {
-            loadingMessage.style.display = "none";
+            document.getElementById("loading-message").style.display = "none";
         });
 }
 
